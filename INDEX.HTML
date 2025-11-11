@@ -1,5 +1,13 @@
 import React, { useMemo, useState } from "react";
 
+// ---- Project Assets (replace with your public URLs or /public paths) ----
+const ASSETS = {
+  logoPrimary: "/assets/nostalgie-logo-1.png", // from: شعار بخلفية سوداء
+  logoSecondary: "/assets/nostalgie-logo-2.png", // من: كلمة نوستالجيا على خلفية برتقالية
+  hostPortrait: "/assets/host-sahar.jpg", // من: صورة سحر العنيزي
+  coverDefault: "/assets/cover-default.jpg", // غلاف عام
+};
+
 // Single-file React landing page for "بودكاست سحر نوستلجي"
 // TailwindCSS styling; no external UI libs required.
 // Replace links and episode data with your real content.
@@ -96,7 +104,7 @@ export default function NostalgiaMagicLanding() {
             <div className="order-1 md:order-2">
               <div className="relative mx-auto max-w-xl">
                 <img
-                  src="https://images.unsplash.com/photo-1520975922284-9bcd8b85c278?q=80&w=1600&auto=format&fit=crop"
+                  src={ASSETS.logoSecondary}
                   alt="Microphone and cassette tapes"
                   className="w-full rounded-3xl shadow-2xl"
                 />
@@ -169,21 +177,21 @@ export default function NostalgiaMagicLanding() {
               <li>• فقرات ثابتة: ذاكرة صوت، ركن شريط كاسيت، وحكايا المستمعين.</li>
             </ul>
             <div className="mt-6 flex gap-3" id="platforms">
-              <StoreBadge label="Spotify" href="#" svg={<SpotifyIcon />} />
-              <StoreBadge label="Apple Podcasts" href="#" svg={<AppleIcon />} />
-              <StoreBadge label="YouTube" href="#" svg={<YouTubeIcon />} />
+              <StoreBadge label="Spotify" href="https://open.spotify.com/show/" svg={<SpotifyIcon />} />
+              <StoreBadge label="Apple Podcasts" href="https://podcasts.apple.com/" svg={<AppleIcon />} />
+              <StoreBadge label="YouTube" href="https://www.youtube.com/@sahar_nostalgie.podcast" svg={<YouTubeIcon />} />
             </div>
           </div>
           <div className="order-1 md:order-2">
             <div className="grid grid-cols-3 gap-4">
               {[
-                "https://images.unsplash.com/photo-1532634726-8b9fb99825c7?q=80&w=800&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1520975922284-9bcd8b85c278?q=80&w=800&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1461988625982-7e46a099bf4b?q=80&w=800&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?q=80&w=800&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1516280030429-27679b3dc9cf?q=80&w=800&auto=format&fit=crop",
-                "https://images.unsplash.com/photo-1492724441997-5dc865305da7?q=80&w=800&auto=format&fit=crop"
-              ].map((src, i) => (
+              ASSETS.hostPortrait,
+              ASSETS.coverDefault,
+              ASSETS.logoSecondary,
+              ASSETS.logoPrimary,
+              ASSETS.coverDefault,
+              ASSETS.hostPortrait,
+            ].map((src, i) => (
                 <img key={i} src={src} alt="guest" className="w-full h-28 object-cover rounded-2xl" />
               ))}
             </div>
@@ -241,9 +249,10 @@ export default function NostalgiaMagicLanding() {
             </ul>
             <h4 className="mt-6 font-bold">تابعنا</h4>
             <div className="mt-2 flex gap-3">
-              <SocialIcon label="YouTube" href="#" svg={<YouTubeIcon />} />
-              <SocialIcon label="X" href="#" svg={<XIcon />} />
-              <SocialIcon label="Instagram" href="#" svg={<InstagramIcon />} />
+              <SocialIcon label="YouTube" href="https://www.youtube.com/@sahar_nostalgie.podcast" svg={<YouTubeIcon />} />
+              <SocialIcon label="X" href="https://x.com/sa_alenaizi" svg={<XIcon />} />
+              <SocialIcon label="Instagram" href="https://www.instagram.com/sa.alenaizi_official" />
+              <SocialIcon label="Instagram" href="https://www.instagram.com/sahar_nostalgie.podcast" svg={<InstagramIcon />} />
             </div>
           </div>
         </div>
@@ -262,8 +271,8 @@ function Header() {
     <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-stone-200">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         <a href="#" className="flex items-center gap-3">
-          <LogoIcon />
-          <span className="font-extrabold">سحر نوستلجي</span>
+          {/* استخدم الشعار الخاص بالبودكاست */}
+          <img src={ASSETS.logoPrimary} alt="سحر نوستلجي" className="h-8 w-auto" />
         </a>
         <nav className="hidden md:flex items-center gap-6 text-sm text-stone-700">
           <a href="#episodes" className="hover:text-stone-900">الحلقات</a>
@@ -346,14 +355,7 @@ function Search({ value, onChange }) {
 }
 
 /* ---- Simple SVG Icons (no external deps) ---- */
-function LogoIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="w-7 h-7 text-rose-600" fill="currentColor" aria-hidden>
-      <path d="M6 3a3 3 0 0 0-3 3v8a6 6 0 1 0 12 0V6a3 3 0 0 0-3-3H6zm7 6h2v5a5 5 0 1 1-10 0V9h2v5a3 3 0 1 0 6 0V9z" />
-    </svg>
-  );
-}
-function PlayIcon() {
+function PlayIcon()() {
   return (
     <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor" aria-hidden>
       <path d="M8 5v14l11-7z" />
