@@ -6,20 +6,26 @@
   <title>بودكاست سحر نوستلجي</title>
   <meta name="description" content="مساحة حنين وذكريات جميلة — بودكاست سحر نوستلجي" />
   <link rel="icon" href="./assets/nostalgie-logo-2.png"/>
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: { extend: { colors: { brand: { coral:'#E76457', cream:'#E7E0D6', ink:'#0B0B0B' } } } }
     }
   </script>
+  <!-- OG -->
   <meta property="og:title" content="بودكاست سحر نوستلجي"/>
   <meta property="og:description" content="مساحة حنين وذكريات جميلة"/>
   <meta property="og:image" content="./assets/nostalgie-logo-2.png"/>
   <meta property="og:type" content="website"/>
   <meta property="og:locale" content="ar_SA"/>
+  <style>
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,"Noto Kufi Arabic","Noto Sans Arabic",sans-serif}
+  </style>
 </head>
 
 <body class="bg-gradient-to-b from-stone-50 to-white text-stone-900">
+  <!-- Header -->
   <header class="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-stone-200">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
@@ -38,6 +44,7 @@
     </div>
   </header>
 
+  <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="container mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
       <div class="order-2 md:order-1 text-center md:text-right">
@@ -60,6 +67,7 @@
     </div>
   </section>
 
+  <!-- Episodes (cards without images) -->
   <section id="episodes" class="container mx-auto px-4 py-16">
     <div class="mb-8 text-center md:text-right">
       <h2 class="text-2xl md:text-3xl font-extrabold">أحدث الحلقات</h2>
@@ -76,12 +84,13 @@
     </div>
   </section>
 
+  <!-- About (host photo only) -->
   <section id="about" class="bg-stone-50/60 border-y border-stone-200">
     <div class="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
       <div class="order-2 md:order-1">
         <h2 class="text-2xl md:text-3xl font-extrabold">عن البودكاست</h2>
         <p class="mt-3 text-stone-700 leading-relaxed">
-          "سحر نوستلجي" مساحة حنين راقية نرجع فيها للذكريات الجميلة ونوثّق قصصًاً تصنع الإلهام للحاضر.
+          "سحر نوستلجي" مساحة حنين راقية نرجع فيها للذكريات الجميلة ونوثّق قصصًا تصنع الإلهام للحاضر.
           حلقاتنا مرئية على يوتيوب وصوتية على مختلف المنصات.
         </p>
         <ul class="mt-5 space-y-2 text-stone-700">
@@ -90,9 +99,11 @@
           <li>• فقرات ثابتة: ذاكرة صوت، ركن شريط كاسيت، وحكايا المستمعين.</li>
         </ul>
       </div>
+
       <div class="order-1 md:order-2">
         <div class="relative max-w-md mx-auto">
-          <img src="./assets/host-sahar.jpg" alt="سحر وليد العنيزي — مقدمة البودكاست"
+          <img src="./assets/host-sahar.jpg"
+               alt="سحر وليد العنيزي — مقدمة البودكاست"
                class="w-full h-auto rounded-3xl shadow-2xl object-cover">
           <div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur rounded-2xl p-4 text-sm text-stone-800 shadow">
             <div class="font-bold">سحر وليد العنيزي</div>
@@ -103,12 +114,57 @@
     </div>
   </section>
 
+  <!-- Subscribe -->
+  <section id="subscribe" class="container mx-auto px-4 py-16">
+    <div class="mb-8 text-center md:text-right">
+      <h2 class="text-2xl md:text-3xl font-extrabold">اشترك ليصلك الجديد</h2>
+    </div>
+    <form class="mx-auto max-w-xl rounded-3xl border border-stone-200 bg-white p-4 sm:p-6 flex flex-col sm:flex-row gap-3" onsubmit="return false">
+      <input type="email" required placeholder="بريدك الإلكتروني" class="flex-1 rounded-2xl border border-stone-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand-coral">
+      <button type="submit" class="rounded-2xl bg-brand-coral px-5 py-3 text-white font-semibold hover:bg-brand-coral/90">اشترك</button>
+    </form>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="bg-stone-900 text-white">
+    <div class="container mx-auto px-4 py-14 grid md:grid-cols-3 gap-8">
+      <div class="md:col-span-2">
+        <h3 class="text-xl font-bold">تواصل معنا</h3>
+        <p class="mt-2 text-stone-300">عندك قصة أو ذكرى تبغى نعرضها؟ راسلنا وخلّنا نسمع منك.</p>
+        <div class="mt-4 grid sm:grid-cols-2 gap-3">
+          <input class="rounded-xl bg-stone-800 border border-stone-700 px-4 py-3" placeholder="اسمك">
+          <input class="rounded-xl bg-stone-800 border border-stone-700 px-4 py-3" placeholder="البريد">
+          <textarea class="sm:col-span-2 rounded-xl bg-stone-800 border border-stone-700 px-4 py-3" rows="4" placeholder="رسالتك"></textarea>
+          <button class="sm:col-span-2 rounded-xl bg-white text-stone-900 px-4 py-3 font-semibold hover:opacity-90">إرسال</button>
+        </div>
+      </div>
+      <div>
+        <h4 class="font-bold">روابط سريعة</h4>
+        <ul class="mt-3 space-y-2 text-stone-300">
+          <li><a href="#episodes" class="hover:text-white">الحلقات</a></li>
+          <li><a href="#about" class="hover:text-white">عن البودكاست</a></li>
+          <li><a href="#subscribe" class="hover:text-white">اشترك</a></li>
+        </ul>
+        <h4 class="mt-6 font-bold">تابعنا</h4>
+        <div class="mt-2 flex gap-3">
+          <a aria-label="YouTube" href="https://www.youtube.com/@sa.alenaizi_official" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">YT</a>
+          <a aria-label="X" href="https://x.com/sa_alenaizi" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">X</a>
+          <a aria-label="Instagram" href="https://www.instagram.com/sa.alenaizi_official" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
+          <a aria-label="Instagram" href="https://www.instagram.com/sahar_nostalgie.podcast" class="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-stone-800">
+      <div class="container mx-auto px-4 py-6 text-center text-sm text-stone-400">© <span id="y"></span> بودكاست سحر نوستلجي — كل الحقوق محفوظة</div>
+    </div>
+  </section>
+
   <script>
     const channelVideo = "https://www.youtube.com/@sa.alenaizi_official";
     const channelAudio = "https://soundcloud.com/saharalenaizi/uitee5fyuokb";
 
     const episodes = [
-      {id:1, ep:"01", title:"سحر طفولتنا في السبعينات وما بعد ", date:"2025-10-01", duration:"34:12",
+      {id:1, ep:"01", title:"سحر طفولتنا في التسعينات", date:"2025-10-01", duration:"34:12",
        summary:"نسترجع ألعاب الطيبين، مسلسلات الكرتون، ومواقف صنعت هويتنا اليوم.",
        youtube:channelVideo, audio:channelAudio},
       {id:2, ep:"02", title:"موسيقى زمان اللي ما ننساها", date:"2025-10-15", duration:"41:05",
@@ -147,6 +203,7 @@
     }
 
     grid.innerHTML = episodes.map(cardHTML).join('');
+    document.getElementById('y').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
