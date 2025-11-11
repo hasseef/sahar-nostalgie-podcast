@@ -1,11 +1,12 @@
 import React, { useMemo, useState } from "react";
 
 // ---- Project Assets (replace with your public URLs or /public paths) ----
+// ملاحظة: على GitHub Pages لمستودع فرعي، لا تبدأ المسارات بـ "/".
 const ASSETS = {
-  logoPrimary: "/assets/nostalgie-logo-1.png", // from: شعار بخلفية سوداء
-  logoSecondary: "/assets/nostalgie-logo-2.png", // من: كلمة نوستالجيا على خلفية برتقالية
-  hostPortrait: "/assets/host-sahar.jpg", // من: صورة سحر العنيزي
-  coverDefault: "/assets/cover-default.jpg", // غلاف عام
+  logoPrimary: "./assets/nostalgie-logo-1.png",
+  logoSecondary: "./assets/nostalgie-logo-2.png",
+  hostPortrait: "./assets/host-sahar.jpg",
+  coverDefault: "./assets/cover-default.jpg",
 };
 
 // Single-file React landing page for "بودكاست سحر نوستلجي"
