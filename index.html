@@ -4,51 +4,64 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>بودكاست سحر نوستلجي</title>
-  <link rel="icon" href="./assets/nostalgie-logo-1.png"/>
-  <meta property="og:title" content="بودكاست سحر نوستلجي"/>
-  <meta property="og:description" content="مساحة حنين وذكريات جميلة"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:image" content="./assets/nostalgie-logo-2.png"/>
-  <meta property="og:locale" content="ar_SA"/>
   <meta name="description" content="مساحة حنين وذكريات جميلة — بودكاست سحر نوستلجي" />
-  <!-- Tailwind CDN -->
+  <link rel="icon" href="./assets/nostalgie-logo-2.png"/>
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style> body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Kufi Arabic", "Noto Sans Arabic", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif; } </style>
-  <!-- React via UMD (no build) -->
+  <script>
+    window.tailwind = window.tailwind || {};
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { coral:'#E76457', cream:'#E7E0D6', ink:'#0B0B0B' } }
+        }
+      }
+    }
+  </script>
+  <!-- React (no build) -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script>window.tailwind=window.tailwind||{};tailwind.config={theme:{extend:{colors:{brand:{coral:'#E76457',cream:'#E7E0D6',ink:'#0B0B0B'}}}}}</script>
+  <meta property="og:title" content="بودكاست سحر نوستلجي"/>
+  <meta property="og:description" content="مساحة حنين وذكريات جميلة"/>
+  <meta property="og:image" content="./assets/nostalgie-logo-2.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="ar_SA"/>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Kufi Arabic",
+        "Noto Sans Arabic", "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+    }
+  </style>
 </head>
 <body class="bg-gradient-to-b from-stone-50 to-white text-stone-900">
   <div id="root"></div>
 
   <script type="text/babel">
     const ASSETS = {
-      logoPrimary: "./assets/nostalgie-logo-1.png", // شعار أساسي (أسود)
-      logoSecondary: "./assets/nostalgie-logo-2.png", // شعار الهوية البرتقالية
-      hostPortrait: "./assets/host-sahar.jpg"       // صورة المقدّمة سحر
+      logo: "./assets/nostalgie-logo-2.png",
+      host: "./assets/host-sahar.jpg"
     };
+    const channel = "https://www.youtube.com/@sa.alenaizi_official";
 
-    function App(){
+    function App() {
       const [query,setQuery] = React.useState("");
-      const episodes = React.useMemo(()=>[
-        {id:1,title:"الحلقة 01 — سحر طفولتنا في التسعينات",date:"2025-10-01",duration:"34:12",summary:"نسترجع ألعاب الطيبين، مسلسلات الكرتون، ونحكي قصصًا صنعت هويتنا اليوم.",tags:["طفولة","التسعينات","ذكريات"],youtube:"https://youtube.com/shorts/7mDWHmT36MY?si=hnwoK9v_YfNU12ki",audio:"https://cdn.example.com/audio/ep1.mp3",cover:ASSETS.logoPrimary},
-        {id:2,title:"الحلقة 02 — موسيقى زمان اللي ما ننساها",date:"2025-10-15",duration:"41:05",summary:"نغوص في ألبومات شكلت ذائقتنا وكيف أثرت في مشاعرنا ومناسباتنا.",tags:["موسيقى","نوستلجيا"],youtube:"https://youtube.com/placeholder-ep2",audio:"https://cdn.example.com/audio/ep2.mp3",cover:ASSETS.logoPrimary},
-        {id:3,title:"الحلقة 03 — ضيفنا من الأرشيف",date:"2025-11-01",duration:"50:44",summary:"حوار ممتع مع ضيف عاش التفاصيل الصغيرة والكبيرة في ذلك الزمن.",tags:["حوار","قصص"],youtube:"https://youtube.com/placeholder-ep3",audio:"https://cdn.example.com/audio/ep3.mp3",cover:ASSETS.logoPrimary},
-      ],[]);
-      const filtered = React.useMemo(()=>{
-        const q = query.trim().toLowerCase();
-        if(!q) return episodes;
-        return episodes.filter(e=> (e.title+e.summary+e.tags.join(" ")).toLowerCase().includes(q));
-      },[episodes,query]);
+      const episodes = [
+        {id:1,title:"الحلقة 01 — سحر طفولتنا في التسعينات",date:"2025-10-01",duration:"34:12",summary:"نسترجع ألعاب الطيبين، مسلسلات الكرتون، ونحكي قصصًا صنعت هويتنا اليوم.",tags:["طفولة","التسعينات","ذكريات"],youtube:channel,audio:channel,cover:ASSETS.logo},
+        {id:2,title:"الحلقة 02 — موسيقى زمان اللي ما ننساها",date:"2025-10-15",duration:"41:05",summary:"نغوص في ألبومات شكلت ذائقتنا وكيف أثرت في مشاعرنا ومناسباتنا.",tags:["موسيقى","نوستلجيا"],youtube:channel,audio:channel,cover:ASSETS.logo},
+        {id:3,title:"الحلقة 03 — ضيفنا من الأرشيف",date:"2025-11-01",duration:"50:44",summary:"حوار ممتع مع ضيف عاش التفاصيل الصغيرة والكبيرة في ذلك الزمن.",tags:["حوار","قصص"],youtube:channel,audio:channel,cover:ASSETS.logo}
+      ];
+      const filtered = episodes.filter(e =>
+        (e.title+e.summary+e.tags.join(" ")).toLowerCase().includes(query.trim().toLowerCase())
+      );
 
       return (
         <main className="min-h-screen">
+          {/* Header */}
           <header className="sticky top-0 z-50 backdrop-blur bg-white/70 border-b border-stone-200">
             <div className="container mx-auto px-4 py-3 flex items-center justify-between">
               <a href="#" className="flex items-center gap-3">
-                <img src={ASSETS.logoPrimary} alt="سحر نوستلجي" className="h-8 w-auto"/>
+                <img src={ASSETS.logo} alt="بودكاست سحر نوستلجي" className="h-8 w-auto"/>
               </a>
               <nav className="hidden md:flex items-center gap-6 text-sm text-stone-700">
                 <a href="#episodes" className="hover:text-stone-900">الحلقات</a>
@@ -56,7 +69,7 @@
                 <a href="#subscribe" className="hover:text-stone-900">اشترك</a>
                 <a href="#contact" className="hover:text-stone-900">تواصل</a>
               </nav>
-              <a href="https://www.youtube.com/@sahar_nostalgie.podcast" className="inline-flex items-center gap-2 rounded-2xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">استمع الآن</a>
+              <a href={channel} className="inline-flex items-center gap-2 rounded-2xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">استمع الآن</a>
             </div>
           </header>
 
@@ -67,8 +80,8 @@
                 <h1 className="text-3xl md:text-5xl font-black leading-tight">بودكاست <span className="text-brand-coral">سحر نوستلجي</span></h1>
                 <p className="mt-4 text-lg md:text-xl text-stone-600">نعيد لك لحظات الفرح، الأصوات والروائح التي علّمتنا معنى الذكرى الجميلة.</p>
                 <div className="mt-6 flex flex-wrap items-center justify-center md:justify-end gap-3">
-                  <a href="#platforms" className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">استمع على Spotify</a>
-                  <a href="https://www.youtube.com/@sahar_nostalgie.podcast" className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">شاهد على YouTube</a>
+                  <a href={channel} className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">شاهد على YouTube</a>
+                  <a href="#episodes" className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">تصفح الحلقات</a>
                 </div>
                 <div className="mt-6 relative max-w-lg ml-auto">
                   <input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="ابحث داخل الحلقات…" className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-coral"/>
@@ -76,8 +89,10 @@
               </div>
               <div className="order-1 md:order-2">
                 <div className="relative mx-auto max-w-xl">
-                  <img src={ASSETS.logoSecondary} alt="شعار بودكاست سحر نوستلجي (هوية برتقالية)" className="w-full rounded-3xl shadow-2xl"/>
-                  <div className="absolute -bottom-5 -left-5 bg-white/90 backdrop-blur rounded-2xl shadow p-4 text-sm"><span className="font-bold">{episodes.length}</span> حلقات منشورة — المزيد قريبًا</div>
+                  <img src={ASSETS.logo} alt="شعار بودكاست سحر نوستلجي (هوية برتقالية)" className="w-full rounded-3xl shadow-2xl"/>
+                  <div className="absolute -bottom-5 -left-5 bg-white/90 backdrop-blur rounded-2xl shadow p-4 text-sm">
+                    <span className="font-bold">{episodes.length}</span> حلقات منشورة — المزيد قريبًا
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,13 +112,12 @@
                   </div>
                   <div className="p-5">
                     <div className="flex items-center justify-between text-xs text-stone-500">
-                      <time dateTime={ep.date}>{new Date(ep.date).toLocaleDateString("ar-SA", { year: "numeric", month: "long", day: "numeric" })}</time>
+                      <time dateTime={ep.date}>{new Date(ep.date).toLocaleDateString('ar-SA', {year:'numeric',month:'long',day:'numeric'})}</time>
                       <span>{ep.duration}</span>
                     </div>
                     <h3 className="mt-2 text-lg font-bold leading-snug">{ep.title}</h3>
                     <p className="mt-1 text-sm text-stone-600 line-clamp-2">{ep.summary}</p>
                     <div className="mt-4 flex items-center gap-3">
-                      <a href={ep.audio} className="inline-flex items-center gap-2 rounded-xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">استمع الآن</a>
                       <a href={ep.youtube} className="inline-flex items-center gap-2 rounded-xl border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100">مشاهدة</a>
                     </div>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -118,21 +132,23 @@
           {/* About */}
           <section id="about" className="bg-stone-50/60 border-y border-stone-200">
             <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
-              {/* Text */}
               <div className="order-2 md:order-1">
                 <h2 className="text-2xl md:text-3xl font-extrabold">عن البودكاست</h2>
                 <p className="mt-3 text-stone-700 leading-relaxed">"سحر نوستلجي" مساحة حنين راقية نرجع فيها للذكريات الجميلة ونوثّق قصصًا تصنع الإلهام للحاضر. حلقاتنا مرئية على يوتيوب وصوتية على مختلف المنصات.</p>
-                <ul className="mt-5 space-y-2 text-stone-700"><li>• إنتاج احترافي وسرد قصصي بإحساس.</li><li>• ضيوف عاشوا تفاصيل الأيام الحلوة.</li><li>• فقرات ثابتة: ذاكرة صوت، ركن شريط كاسيت، وحكايا المستمعين.</li></ul>
+                <ul className="mt-5 space-y-2 text-stone-700">
+                  <li>• إنتاج احترافي وسرد قصصي بإحساس.</li>
+                  <li>• ضيوف عاشوا تفاصيل الأيام الحلوة.</li>
+                  <li>• فقرات ثابتة: ذاكرة صوت، ركن شريط كاسيت، وحكايا المستمعين.</li>
+                </ul>
                 <div className="mt-6 flex gap-3" id="platforms">
                   <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href="https://open.spotify.com/show/">Spotify</a>
                   <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href="https://podcasts.apple.com/">Apple Podcasts</a>
-                  <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href="https://www.youtube.com/@sahar_nostalgie.podcast">YouTube</a>
+                  <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href={channel}>YouTube</a>
                 </div>
               </div>
-              {/* Host portrait card */}
               <div className="order-1 md:order-2">
                 <div className="relative max-w-md mx-auto">
-                  <img src={ASSETS.hostPortrait} alt="سحر وليد العنزي — مقدمة البودكاست" className="w-full rounded-3xl shadow-2xl object-cover"/>
+                  <img src={ASSETS.host} alt="سحر وليد العنزي — مقدمة البودكاست" className="w-full h-auto rounded-3xl shadow-2xl object-cover"/>
                   <div className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur rounded-2xl p-4 text-sm text-stone-800 shadow">
                     <div className="font-bold">سحر وليد العنزي</div>
                     <div className="text-stone-600">إعلامية ومعلّقة صوتية ومدرّبة في التأثير</div>
@@ -176,7 +192,7 @@
                 </ul>
                 <h4 className="mt-6 font-bold">تابعنا</h4>
                 <div className="mt-2 flex gap-3">
-                  <a aria-label="YouTube" href="https://www.youtube.com/@sahar_nostalgie.podcast" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">YT</a>
+                  <a aria-label="YouTube" href={channel} className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">YT</a>
                   <a aria-label="X" href="https://x.com/sa_alenaizi" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">X</a>
                   <a aria-label="Instagram" href="https://www.instagram.com/sa.alenaizi_official" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
                   <a aria-label="Instagram" href="https://www.instagram.com/sahar_nostalgie.podcast" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
