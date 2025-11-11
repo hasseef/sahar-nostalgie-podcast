@@ -22,6 +22,7 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- OG -->
   <meta property="og:title" content="بودكاست سحر نوستلجي"/>
   <meta property="og:description" content="مساحة حنين وذكريات جميلة"/>
   <meta property="og:image" content="./assets/nostalgie-logo-2.png"/>
@@ -39,20 +40,30 @@
 
   <script type="text/babel">
     const ASSETS = {
-      logo: "./assets/nostalgie-logo-2.png",
-      host: "./assets/host-sahar.jpg"
+      logo: "./assets/nostalgie-logo-2.png",  // الشعار البرتقالي
+      host: "./assets/host-sahar.jpg"        // صورة سحر
     };
-    const channel = "https://www.youtube.com/@sa.alenaizi_official";
+
+    // قنوات الربط
+    const channelVideo = "https://www.youtube.com/@sa.alenaizi_official";
+    const channelAudio = "https://hasseef.github.io/sahar-nostalgie-podcast/#";
 
     function App() {
       const [query,setQuery] = React.useState("");
       const episodes = [
-        {id:1,title:"الحلقة 01 — سحر طفولتنا في التسعينات",date:"2025-10-01",duration:"34:12",summary:"نسترجع ألعاب الطيبين، مسلسلات الكرتون، ونحكي قصصًا صنعت هويتنا اليوم.",tags:["طفولة","التسعينات","ذكريات"],youtube:channel,audio:channel,cover:ASSETS.logo},
-        {id:2,title:"الحلقة 02 — موسيقى زمان اللي ما ننساها",date:"2025-10-15",duration:"41:05",summary:"نغوص في ألبومات شكلت ذائقتنا وكيف أثرت في مشاعرنا ومناسباتنا.",tags:["موسيقى","نوستلجيا"],youtube:channel,audio:channel,cover:ASSETS.logo},
-        {id:3,title:"الحلقة 03 — ضيفنا من الأرشيف",date:"2025-11-01",duration:"50:44",summary:"حوار ممتع مع ضيف عاش التفاصيل الصغيرة والكبيرة في ذلك الزمن.",tags:["حوار","قصص"],youtube:channel,audio:channel,cover:ASSETS.logo}
+        {id:1, ep:"01", title:"سحر طفولتنا في التسعينات", date:"2025-10-01", duration:"34:12",
+         summary:"نسترجع ألعاب الطيبين، مسلسلات الكرتون، ومواقف صنعت هويتنا اليوم.",
+         youtube:channelVideo, audio:channelAudio},
+        {id:2, ep:"02", title:"موسيقى زمان اللي ما ننساها", date:"2025-10-15", duration:"41:05",
+         summary:"نغوص في ألبومات شكلت ذائقتنا وكيف أثّرت في مشاعرنا ومناسباتنا.",
+         youtube:channelVideo, audio:channelAudio},
+        {id:3, ep:"03", title:"ضيفنا من الأرشيف", date:"2025-11-01", duration:"50:44",
+         summary:"حوار ممتع مع ضيف عاش التفاصيل الصغيرة والكبيرة في ذلك الزمن.",
+         youtube:channelVideo, audio:channelAudio}
       ];
+
       const filtered = episodes.filter(e =>
-        (e.title+e.summary+e.tags.join(" ")).toLowerCase().includes(query.trim().toLowerCase())
+        (e.title + e.summary).toLowerCase().includes(query.trim().toLowerCase())
       );
 
       return (
@@ -69,22 +80,35 @@
                 <a href="#subscribe" className="hover:text-stone-900">اشترك</a>
                 <a href="#contact" className="hover:text-stone-900">تواصل</a>
               </nav>
-              <a href={channel} className="inline-flex items-center gap-2 rounded-2xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">استمع الآن</a>
+              <div className="flex items-center gap-2">
+                <a href={channelVideo} className="rounded-2xl border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100">شاهد على YouTube</a>
+                <a href={channelAudio} className="rounded-2xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">استمع الآن</a>
+              </div>
             </div>
           </header>
 
-          {/* Hero */}
+          {/* Hero (logo only) */}
           <section className="relative overflow-hidden">
             <div className="container mx-auto px-4 py-20 md:py-28 grid md:grid-cols-2 gap-10 items-center">
               <div className="order-2 md:order-1 text-center md:text-right">
-                <h1 className="text-3xl md:text-5xl font-black leading-tight">بودكاست <span className="text-brand-coral">سحر نوستلجي</span></h1>
-                <p className="mt-4 text-lg md:text-xl text-stone-600">نعيد لك لحظات الفرح، الأصوات والروائح التي علّمتنا معنى الذكرى الجميلة.</p>
+                <h1 className="text-3xl md:text-5xl font-black leading-tight">
+                  بودكاست <span className="text-brand-coral">سحر نوستلجي</span>
+                </h1>
+                <p className="mt-4 text-lg md:text-xl text-stone-600">
+                  نعيد لك لحظات الفرح، الأصوات والروائح التي علّمتنا معنى الذكرى الجميلة.
+                </p>
                 <div className="mt-6 flex flex-wrap items-center justify-center md:justify-end gap-3">
-                  <a href={channel} className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">شاهد على YouTube</a>
-                  <a href="#episodes" className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">تصفح الحلقات</a>
+                  <a href={channelVideo} className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">
+                    شاهد على YouTube
+                  </a>
+                  <a href="#episodes" className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 px-4 py-2 text-sm hover:bg-stone-100">
+                    تصفح الحلقات
+                  </a>
                 </div>
                 <div className="mt-6 relative max-w-lg ml-auto">
-                  <input type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="ابحث داخل الحلقات…" className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-coral"/>
+                  <input type="search" value={query} onChange={e=>setQuery(e.target.value)}
+                         placeholder="ابحث داخل الحلقات…"
+                         className="w-full rounded-2xl border border-stone-300 bg-white px-4 py-3 pr-10 focus:outline-none focus:ring-2 focus:ring-brand-coral"/>
                 </div>
               </div>
               <div className="order-1 md:order-2">
@@ -98,30 +122,45 @@
             </div>
           </section>
 
-          {/* Episodes */}
+          {/* Episodes (cards without images) */}
           <section id="episodes" className="container mx-auto px-4 py-16">
             <div className="mb-8 text-center md:text-right">
               <h2 className="text-2xl md:text-3xl font-extrabold">أحدث الحلقات</h2>
               <p className="mt-2 text-stone-600">استكشف الحلقات وشاركنا ذكرياتك</p>
             </div>
+
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map(ep => (
-                <article key={ep.id} className="group rounded-3xl border border-stone-200 overflow-hidden hover:shadow-xl transition bg-white">
-                  <div className="aspect-[16/9] overflow-hidden">
-                    <img src={ep.cover} alt={ep.title} className="w-full h-full object-cover group-hover:scale-105 transition"/>
-                  </div>
-                  <div className="p-5">
-                    <div className="flex items-center justify-between text-xs text-stone-500">
-                      <time dateTime={ep.date}>{new Date(ep.date).toLocaleDateString('ar-SA', {year:'numeric',month:'long',day:'numeric'})}</time>
+                <article key={ep.id}
+                  className="group rounded-3xl overflow-hidden border border-stone-200 bg-white">
+                  <!-- بطاقة العنوان الملونة -->
+                  <div className="bg-brand-coral p-5 h-40 relative flex items-center justify-center">
+                    <span className="absolute top-3 right-3 text-[11px] font-bold uppercase tracking-wider bg-white/20 text-white px-2 py-1 rounded">
+                      EP{ep.ep}
+                    </span>
+                    <h3 className="text-white text-lg md:text-xl font-extrabold text-center leading-snug
+                                   group-hover:scale-[1.02] transition-transform">
+                      {ep.title}
+                    </h3>
+                    <div className="absolute bottom-3 left-5 right-5 flex items-center justify-between text-white/90 text-xs">
+                      <time dateTime={ep.date}>
+                        {new Date(ep.date).toLocaleDateString('ar-SA', {year:'numeric',month:'long',day:'numeric'})}
+                      </time>
                       <span>{ep.duration}</span>
                     </div>
-                    <h3 className="mt-2 text-lg font-bold leading-snug">{ep.title}</h3>
-                    <p className="mt-1 text-sm text-stone-600 line-clamp-2">{ep.summary}</p>
+                  </div>
+
+                  <div className="p-5">
+                    <p className="text-sm text-stone-700">{ep.summary}</p>
                     <div className="mt-4 flex items-center gap-3">
-                      <a href={ep.youtube} className="inline-flex items-center gap-2 rounded-xl border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100">مشاهدة</a>
-                    </div>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {ep.tags.map(t => <span key={t} className="inline-block rounded-full bg-stone-100 px-3 py-1 text-xs text-stone-700">#{t}</span>)}
+                      <a href={ep.audio}
+                         className="inline-flex items-center gap-2 rounded-xl bg-stone-900 text-white px-3 py-2 text-sm hover:opacity-90">
+                        استمع الآن
+                      </a>
+                      <a href={ep.youtube}
+                         className="inline-flex items-center gap-2 rounded-xl border border-stone-300 px-3 py-2 text-sm hover:bg-stone-100">
+                        مشاهدة
+                      </a>
                     </div>
                   </div>
                 </article>
@@ -129,12 +168,15 @@
             </div>
           </section>
 
-          {/* About */}
+          {/* About (host photo only) */}
           <section id="about" className="bg-stone-50/60 border-y border-stone-200">
             <div className="container mx-auto px-4 py-16 grid md:grid-cols-2 gap-10 items-center">
               <div className="order-2 md:order-1">
                 <h2 className="text-2xl md:text-3xl font-extrabold">عن البودكاست</h2>
-                <p className="mt-3 text-stone-700 leading-relaxed">"سحر نوستلجي" مساحة حنين راقية نرجع فيها للذكريات الجميلة ونوثّق قصصًا تصنع الإلهام للحاضر. حلقاتنا مرئية على يوتيوب وصوتية على مختلف المنصات.</p>
+                <p className="mt-3 text-stone-700 leading-relaxed">
+                  "سحر نوستلجي" مساحة حنين راقية نرجع فيها للذكريات الجميلة ونوثّق قصصًا تصنع الإلهام للحاضر.
+                  حلقاتنا مرئية على يوتيوب وصوتية على مختلف المنصات.
+                </p>
                 <ul className="mt-5 space-y-2 text-stone-700">
                   <li>• إنتاج احترافي وسرد قصصي بإحساس.</li>
                   <li>• ضيوف عاشوا تفاصيل الأيام الحلوة.</li>
@@ -143,12 +185,14 @@
                 <div className="mt-6 flex gap-3" id="platforms">
                   <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href="https://open.spotify.com/show/">Spotify</a>
                   <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href="https://podcasts.apple.com/">Apple Podcasts</a>
-                  <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href={channel}>YouTube</a>
+                  <a className="inline-flex items-center gap-2 rounded-2xl border border-stone-300 bg-white px-4 py-2 text-sm hover:bg-stone-100" href={channelVideo}>YouTube</a>
                 </div>
               </div>
+
               <div className="order-1 md:order-2">
                 <div className="relative max-w-md mx-auto">
-                  <img src={ASSETS.host} alt="سحر وليد العنزي — مقدمة البودكاست" className="w-full h-auto rounded-3xl shadow-2xl object-cover"/>
+                  <img src={ASSETS.host} alt="سحر وليد العنزي — مقدمة البودكاست"
+                       className="w-full h-auto rounded-3xl shadow-2xl object-cover"/>
                   <div className="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur rounded-2xl p-4 text-sm text-stone-800 shadow">
                     <div className="font-bold">سحر وليد العنزي</div>
                     <div className="text-stone-600">إعلامية ومعلّقة صوتية ومدرّبة في التأثير</div>
@@ -192,7 +236,7 @@
                 </ul>
                 <h4 className="mt-6 font-bold">تابعنا</h4>
                 <div className="mt-2 flex gap-3">
-                  <a aria-label="YouTube" href={channel} className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">YT</a>
+                  <a aria-label="YouTube" href={channelVideo} className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">YT</a>
                   <a aria-label="X" href="https://x.com/sa_alenaizi" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">X</a>
                   <a aria-label="Instagram" href="https://www.instagram.com/sa.alenaizi_official" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
                   <a aria-label="Instagram" href="https://www.instagram.com/sahar_nostalgie.podcast" className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-stone-700 bg-stone-800 hover:bg-stone-700">IG</a>
