@@ -25,7 +25,8 @@
 
   <script type="text/babel">
     const ASSETS = {
-      logoPrimary: "./assets/nostalgie-logo-1.png", // شعار البودكاست
+      logoPrimary: "./assets/nostalgie-logo-1.png", // شعار أساسي (أسود)
+      logoSecondary: "./assets/nostalgie-logo-2.png", // شعار الهوية البرتقالية
       hostPortrait: "./assets/host-sahar.jpg"       // صورة المقدّمة سحر
     };
 
@@ -75,7 +76,7 @@
               </div>
               <div className="order-1 md:order-2">
                 <div className="relative mx-auto max-w-xl">
-                  <img src={ASSETS.logoPrimary} alt="شعار بودكاست سحر نوستلجي" className="w-full rounded-3xl shadow-2xl"/>
+                  <img src={ASSETS.logoSecondary} alt="شعار بودكاست سحر نوستلجي (هوية برتقالية)" className="w-full rounded-3xl shadow-2xl"/>
                   <div className="absolute -bottom-5 -left-5 bg-white/90 backdrop-blur rounded-2xl shadow p-4 text-sm"><span className="font-bold">{episodes.length}</span> حلقات منشورة — المزيد قريبًا</div>
                 </div>
               </div>
